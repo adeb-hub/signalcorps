@@ -136,7 +136,7 @@ export default function Home() {
     // -------------------------
     
     try {
-      const response = await fetch('https://knowledge-base-five-lemon.vercel.app/api/chat/send', {
+      const response = await fetch('https://signalcorps-xi.vercel.app/api/chat/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user?.id, recipientId: selectedUser.id, message: originalMessage })
@@ -168,7 +168,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('https://knowledge-base-five-lemon.vercel.app/api/user/list');
+        const res = await fetch('https://signalcorps-xi.vercel.app/api/user/list');
         const data = await res.json();
         
         const realUsers: BackendUser[] = data.users || [];
