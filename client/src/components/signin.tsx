@@ -1,4 +1,4 @@
-import { SignIn } from "@clerk/clerk-react";
+import { SignIn as SignInRoute } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 
 export default function Signin() {
@@ -16,14 +16,13 @@ export default function Signin() {
       </div>
 
       {/* The Clerk SignIn Component */}
-      <SignIn 
+      <SignInRoute 
         path="/signin" 
         routing="path" 
         signUpUrl="/signup"
-        forceRedirectUrl="/bio" // Redirects here immediately after login
+        forceRedirectUrl="/bio" // FIX: Redirect to Vibe Check after login
         appearance={{
           elements: {
-            // Styling overrides for Series.so aesthetic (Black & White)
             formButtonPrimary: 
               "bg-black hover:bg-gray-800 text-white text-sm normal-case rounded-md",
             card: "shadow-sm border border-gray-200 rounded-xl bg-white",
