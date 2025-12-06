@@ -3,7 +3,7 @@
 ### The Immune System for High-Signal Networks.
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-signalcorps.dev-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://www.signalcorps.dev)
-[![Built With](https://img.shields.io/badge/Built_With-Gemini_Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
+[![Built With](https://img.shields.io/badge/Built_With-Gemini_1.5_Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 
 ---
 
@@ -28,8 +28,8 @@ Bots, spammers, resume-padders, and "wantrepreneurs" dilute the quality of the c
 We don't trust bios; we trust code.
 * Users connect their **GitHub**.
 * They state their claim (e.g., *"I am a Senior Solidity Engineer"*).
-* Our **Gemini AI Agent** recursively scans their actual repository file trees.
-* **The Verdict:** If you claim "Docker" skills but have no `Dockerfile` or `docker-compose.yml`, you are rejected at the door.
+* Our system recursively scans their actual repository file trees and reads dependency manifests.
+* **The Verdict:** We don't just check filenames; we check **code lines**. If you claim "Docker" skills, we verify if your `package.json` includes `dockerode` or if your config files match the claim. Empty repos or "Hello World" tutorials are rejected at the door.
 
 ### 2. The Network Graph
 * Verified users are visualized as a living, force-directed graph.
@@ -38,7 +38,8 @@ We don't trust bios; we trust code.
 
 ### 3. Vibe Guard™ (Real-Time Moderation)
 We moved beyond "Report User" buttons.
-* Every message sent is analyzed in real-time by our **Vibe Guard AI**.
+* **How it works:** Vibe Guard is a logic engine powered by **Google Gemini 1.5 Flash**.
+* Every message sent is analyzed in real-time against a strict set of community guidelines injected into the model's context window.
 * It assigns a **Signal Score (0-100)** based on technical depth, sentiment, and intent.
 * **The Kill Switch:** If a user attempts to spam, sell crypto scams, or harass others (Score < 20), the system automatically:
     1.  Flags the account.
@@ -55,7 +56,7 @@ Signal Corps is designed as an **Event-Driven Architecture** adaptable for high-
 * **Backend:** Node.js + Express (Serverless Functions)
 * **Auth:** Clerk (Custom integration for forced bans)
 * **Database:** MongoDB (Stores verification status and risk scores)
-* **AI Engine:** Google Gemini Flash (Chosen for massive context window to read file trees)
+* **AI Engine:** Google Gemini 1.5 Flash (Chosen for massive context window to read recursive file trees)
 * **Visualization:** `react-force-graph-2d`
 
 ### Production Readiness (Kafka Integration)
