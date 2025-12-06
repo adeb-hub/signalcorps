@@ -3,7 +3,7 @@
 ### The Immune System for High-Signal Networks.
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-signalcorps.dev-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://www.signalcorps.dev)
-[![Built With](https://img.shields.io/badge/Built_With-Gemini_1.5_Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
+[![Built With](https://img.shields.io/badge/Built_With-Gemini_Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 
 ---
 
@@ -38,7 +38,7 @@ We don't trust bios; we trust code.
 
 ### 3. Vibe Guard™ (Real-Time Moderation)
 We moved beyond "Report User" buttons.
-* **How it works:** Vibe Guard is a logic engine powered by **Google Gemini 1.5 Flash**.
+* **How it works:** Vibe Guard is a logic engine powered by **Google Gemini Flash**.
 * Every message sent is analyzed in real-time against a strict set of community guidelines injected into the model's context window.
 * It assigns a **Signal Score (0-100)** based on technical depth, sentiment, and intent.
 * **The Kill Switch:** If a user attempts to spam, sell crypto scams, or harass others (Score < 20), the system automatically:
@@ -56,7 +56,7 @@ Signal Corps is designed as an **Event-Driven Architecture** adaptable for high-
 * **Backend:** Node.js + Express (Serverless Functions)
 * **Auth:** Clerk (Custom integration for forced bans)
 * **Database:** MongoDB (Stores verification status and risk scores)
-* **AI Engine:** Google Gemini 1.5 Flash (Chosen for massive context window to read recursive file trees)
+* **AI Engine:** Google Gemini Flash (Chosen for massive context window to read recursive file trees)
 * **Visualization:** `react-force-graph-2d`
 
 ### Production Readiness (Kafka Integration)
