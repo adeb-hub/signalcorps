@@ -19,6 +19,7 @@ const UserSchema: Schema = new Schema(
     bio: { type: String, default: '' },
     isVerified: { type: Boolean, default: false },
     skills: { type: [String], default: [] },
+    badQualityCount:{ type:Number, default:0, required:true, },
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt

@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
@@ -15,6 +15,7 @@
   "description": "",
   "dependencies": {
     "@ai-sdk/google": "^2.0.44",
+    "@clerk/clerk-sdk-node": "^4.13.23",
     "ai": "^5.0.107",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
