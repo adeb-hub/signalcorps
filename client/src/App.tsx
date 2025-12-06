@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Landing from './components/landing'
 import Bio from './components/signup'
 import { SignedIn } from '@clerk/clerk-react'
@@ -8,7 +8,7 @@ import Verify from './components/verify'
 function App() {
 
   return (
-<BrowserRouter>
+
 <Routes>
   <Route path="/" element={<Landing/>}/>
   <Route path="/signin/*" element={<Signin/>}/>
@@ -17,7 +17,6 @@ function App() {
   <Route path="/bio" element={<><SignedIn><Bio/></SignedIn></>}/>
 </Routes>
 
-</BrowserRouter>
   )
 }
 
