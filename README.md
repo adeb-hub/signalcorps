@@ -7,6 +7,8 @@
 
 ---
 
+LIVE LINK: https://www.signalcorps.dev
+
 ## 🚨 The Problem: Signal vs. Noise
 
 Series.so is building a future that feels human. But as any high-value network scales, it faces an inevitable threat: **Noise.**
