@@ -168,7 +168,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/user/list');
+        const res = await fetch('/api/user/list');
         const data = await res.json();
         
         const realUsers: BackendUser[] = data.users || [];
