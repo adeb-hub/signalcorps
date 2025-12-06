@@ -19,7 +19,7 @@ export default function Verify() {
         // 1. URL: Matches the new backend structure
         // 2. Method: POST
         // 3. Body: JSON stringify the userId
-        const res = await fetch('https://knowledge-base-five-lemon.vercel.app/api/user/status', {
+        const res = await fetch('https://signalcorps-xi.vercel.app/api/user/status', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
