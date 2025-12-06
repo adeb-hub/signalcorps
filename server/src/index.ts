@@ -12,8 +12,14 @@ import Chat from './routes/chat.js' // Changed import name to 'chat.routes.js' f
 
 const app = express();
 app.use(express.json());
-app.use(cors());
-
+app.use(cors({
+    origin: [
+        "http://localhost:5173", // Local development
+        "https://knowledge-base-7wsp.vercel.app/" // <--- ADD YOUR LIVE FRONTEND URL HERE
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+}));
 const PORT = process.env.PORT || 3001;
 
 connectDB();
