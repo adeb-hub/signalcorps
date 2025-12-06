@@ -19,7 +19,7 @@ export default function Signup() {
       <SignUp 
         path="/signup" 
         routing="path" 
-        signInUrl="/login"
+        signInUrl="/signin"
         forceRedirectUrl="/bio" // Redirects here after success
         appearance={{
           elements: {

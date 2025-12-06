@@ -6,6 +6,8 @@ interface BioProps {
   onSuccess: () => void;
 }
 
+const MAX_DEFENSE_TRIES = 3;
+
 export default function Bio({ onSuccess }: BioProps) {
   const { user } = useUser();
   
@@ -19,16 +21,25 @@ export default function Bio({ onSuccess }: BioProps) {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [challengeQuestion, setChallengeQuestion] = useState<string | null>(null);
 
+  // NEW STATE: Defense Counter
+  const [defenseTries, setDefenseTries] = useState(0);
+
+  // Check if the user is permanently locked out
+  const isLockedOut = defenseTries >= MAX_DEFENSE_TRIES;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg(null); 
 
-    if(!githubUser || !bioText) return setErrorMsg("We need both your Code and your Claims.");
+    // If already locked out, prevent submission
+    if (isLockedOut) return;
+
+    if (!githubUser || !bioText) return setErrorMsg("We need both your Code and your Claims.");
 
     setIsLoading(true);
 
     try {
-      const res = await fetch('http://localhost:3001/api/verify', {
+      const res = await fetch('/api/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -42,11 +53,18 @@ export default function Bio({ onSuccess }: BioProps) {
       const data = await res.json();
 
       if (res.ok && data.status === 'VERIFIED') {
+        setDefenseTries(0); // Reset counter on success
         onSuccess(); 
       } else if (data.status === 'SUS') {
         // Enter Defense Mode
         setChallengeQuestion(data.question);
         setErrorMsg(data.reason);
+
+        // INCREMENT COUNTER
+        setDefenseTries(prev => prev + 1);
+
+        // Clear previous answer to force a new one
+        setDefenseAnswer(""); 
       } else {
         setErrorMsg(data.error || "Verification failed. Please try again.");
       }
@@ -58,6 +76,15 @@ export default function Bio({ onSuccess }: BioProps) {
     }
   };
 
+  // --- Helper to reset state when user claims typo ---
+  const handleReset = () => {
+    setChallengeQuestion(null); 
+    setErrorMsg(null); 
+    setDefenseTries(0); // Crucial: Reset counter when starting over
+    setDefenseAnswer(""); // Clear answer field
+  };
+
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4 animate-in fade-in duration-500">
       <div className="max-w-md w-full p-8 border border-gray-200 rounded-2xl shadow-sm bg-white transition-all">
@@ -65,22 +92,38 @@ export default function Bio({ onSuccess }: BioProps) {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold tracking-tight mb-2">
-            {challengeQuestion ? "Defend Your Signal" : "The Gate"}
+            {isLockedOut ? "Access Denied" : (challengeQuestion ? "Defend Your Signal" : "The Gate")}
           </h1>
           <p className="text-gray-500 text-sm">
-            {challengeQuestion 
-              ? "Our AI flagged a gap in your evidence. Prove you know your stuff." 
-              : "Link your code history. Our AI will verify your claims."}
+            {isLockedOut 
+              ? "You have failed the final Vibe Check. Access to the network is permanently denied."
+              : (challengeQuestion 
+                  ? `Our AI flagged a gap in your evidence. Prove you know your stuff. (${defenseTries}/${MAX_DEFENSE_TRIES} tries)` 
+                  : "Link your code history. Our AI will verify your claims.")}
           </p>
         </div>
         
         {/* Error Display */}
-        {errorMsg && (
+        {errorMsg && !isLockedOut && ( // Don't show generic error if locked out
           <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-lg flex gap-3 items-start text-red-600 text-sm">
             <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" />
             <p className="font-medium leading-relaxed">{errorMsg}</p>
           </div>
         )}
+        {/* FINAL LOCKOUT MESSAGE */}
+        {isLockedOut && (
+          <div className="mb-6 p-4 bg-red-100 border border-red-300 rounded-lg flex flex-col gap-2 items-center text-red-700 text-base font-bold text-center">
+            <AlertTriangle className="w-6 h-6 shrink-0" />
+            <p>Final Verdict: LOCKED. Your signal is insufficient.</p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="mt-2 text-xs text-red-500 hover:text-red-700 underline"
+            >
+              Try logging in again.
+            </button>
+          </div>
+        )}
+
 
         <form onSubmit={handleSubmit} className="space-y-6">
           
@@ -141,7 +184,7 @@ export default function Bio({ onSuccess }: BioProps) {
           
           <button 
             type="submit" 
-            disabled={isLoading}
+            disabled={isLoading || isLockedOut} // Disable if loading or locked out
             className={`w-full py-4 rounded-full font-medium text-sm disabled:opacity-50 flex justify-center items-center transition-all hover:scale-[1.02] active:scale-[0.98] ${
               challengeQuestion ? "bg-red-600 hover:bg-red-700 text-white" : "bg-black hover:bg-gray-800 text-white"
             }`}
@@ -153,10 +196,10 @@ export default function Bio({ onSuccess }: BioProps) {
             )}
           </button>
 
-          {challengeQuestion && (
+          {challengeQuestion && !isLockedOut && (
             <button
               type="button"
-              onClick={() => { setChallengeQuestion(null); setErrorMsg(null); }}
+              onClick={handleReset} // Use the new reset helper
               className="w-full text-center text-xs text-gray-400 hover:text-black underline decoration-gray-300"
             >
               Wait, I made a typo in my username
