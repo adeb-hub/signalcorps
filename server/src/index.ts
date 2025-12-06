@@ -15,7 +15,9 @@ app.use(express.json());
 app.use(cors({
     origin: [
         "http://localhost:5173", // Local development
-        "https://knowledge-base-7wsp.vercel.app/" // <--- ADD YOUR LIVE FRONTEND URL HERE
+        "https://knowledge-base-five-lemon.vercel.app", // Your backend URL (optional)
+        "https://www.signalcorps.dev", // <--- REQUIRED: Your Frontend Domain
+        "https://signalcorps.dev"      // <--- RECOMMENDED: Root domain backup
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
