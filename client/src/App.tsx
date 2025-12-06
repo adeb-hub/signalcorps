@@ -13,8 +13,8 @@ function App() {
   <Route path="/" element={<Landing/>}/>
   <Route path="/signin/*" element={<Signin/>}/>
   <Route path="/signup/*" element={<Signup/>}/>
-  <Route path="/bio" element={<><SignedIn><Verify/></SignedIn></>}/>
-  <Route path="/bio" element={<><SignedIn><Bio/></SignedIn></>}/>
+  <Route path="/bio" element={<SignedIn><Verify/></SignedIn>}/>
+  <Route path="/bio" element={<SignedIn><Bio/></SignedIn>}/>
 </Routes>
 
 </BrowserRouter>
