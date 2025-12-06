@@ -4,7 +4,7 @@ import Bio from './components/bio'
 import { SignedIn } from '@clerk/clerk-react'
 import Signin from './components/signin'
 import Signup from './components/signup'
-
+import Home from './components/home'
 // 1. Define the wrapper component to use the hook
 function BioWrapper() {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ function App() {
         <Route path="/bio" element={<BioWrapper />} /> 
 
         {/* Note: You need a route for /home, which Bio redirects to after success */}
-        <Route path="/home" element={<SignedIn><div>Welcome Home!</div></SignedIn>} />
+        <Route path="/home" element={<SignedIn><Home/></SignedIn>} />
       </Routes>
     </BrowserRouter>
   )
