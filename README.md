@@ -36,7 +36,7 @@ We don't trust bios; we trust code.
 * "Me" nodes pulse to anchor the user, while verified peers are color-coded by their unique identity hash.
 * Click any node to initiate a secure, high-signal chat.
 
-### 3. Vibe Guard™ (Real-Time Moderation)
+### 3. Vibe Guard (Real-Time Moderation)
 We moved beyond "Report User" buttons.
 * **How it works:** Vibe Guard is a logic engine powered by **Google Gemini Flash**.
 * Every message sent is analyzed in real-time against a strict set of community guidelines injected into the model's context window.
