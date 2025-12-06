@@ -39,7 +39,7 @@ export default function Bio({ onSuccess }: BioProps) {
     setIsLoading(true);
 
     try {
-      const res = await fetch('/api/verify', {
+      const res = await fetch('https://knowledge-base-five-lemon.vercel.app/api/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
