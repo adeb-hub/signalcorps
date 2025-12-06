@@ -20,7 +20,7 @@ export default function Signin() {
         path="/signin" 
         routing="path" 
         signUpUrl="/signup"
-        forceRedirectUrl="/dashboard" // Redirects here immediately after login
+        forceRedirectUrl="/bio" // Redirects here immediately after login
         appearance={{
           elements: {
             // Styling overrides for Series.so aesthetic (Black & White)

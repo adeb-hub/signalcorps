@@ -4,6 +4,7 @@ import Bio from './components/signup'
 import { SignedIn } from '@clerk/clerk-react'
 import Signin from './components/signin'
 import Signup from './components/signup'
+import Verify from './components/verify'
 function App() {
 
   return (
@@ -12,6 +13,7 @@ function App() {
   <Route path="/" element={<Landing/>}/>
   <Route path="/signin/*" element={<Signin/>}/>
   <Route path="/signup/*" element={<Signup/>}/>
+  <Route path="/bio" element={<Verify/>}/>
   <Route path="/bio" element={<><SignedIn><Bio/></SignedIn></>}/>
 </Routes>
 

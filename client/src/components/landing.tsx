@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Zap, Activity, Lock, Github, ArrowRight } from 'lucide-react';
 
-export default function Home() {
+export default function Landing() {
   return (
     <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
       

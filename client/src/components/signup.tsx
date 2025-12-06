@@ -20,7 +20,7 @@ export default function Signup() {
         path="/signup" 
         routing="path" 
         signInUrl="/login"
-        forceRedirectUrl="/dashboard" // Redirects here after success
+        forceRedirectUrl="/bio" // Redirects here after success
         appearance={{
           elements: {
             // This overrides Clerk's purple to match Series (Black/White)
